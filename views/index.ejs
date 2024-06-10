@@ -1,11 +1,292 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinasi Wisata</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand">Madutour</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></ul>
+        <form class="d-flex">
+          <a class="btn btn-outline-dark" href="/login">
+            <i class="bi bi-person me-1"></i>
+            Login
+          </a>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <!-- Product section-->
+  <section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+      <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-md-6">
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-bs-ride="carousel"
+            data-bs-interval="3000"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="images/3.jpg"
+                  class="d-block w-100"
+                  alt="Slide 1"
+                  height="360"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="images/6.jpg"
+                  class="d-block w-100"
+                  alt="Slide 2"
+                  height="360"
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="images/8.jpg"
+                  class="d-block w-100"
+                  alt="Slide 3"
+                  height="360"
+                />
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h1 class="display-5 fw-bolder">
+            Sumenep Private Island Tour from Madutour
+          </h1>
+          <p class="lead">
+            Tak terbantahkan keindahan Sumenep, sambutlah petualangan yang
+            menggoda di sini. Dari keajaiban alam hingga kekayaan budaya,
+            tiada habisnya pesona yang memikat hati. Datanglah dan temukan
+            keajaiban yang menunggu untuk dijelajahi, setiap sudut menyimpan
+            cerita yang mengagumkan. Jelajahi pesona Sumenep, dan biarkan
+            dirimu terpesona oleh keindahan yang tak terlupakan.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related items section-->
+  <section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+      <h2 class="fw-bolder mb-4">Paket Tour Explore Sumenep Hemat</h2>
+      <div
+        class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+      >
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <a href="#" data-toggle="modal" data-target="#imageModal1">
+              <img class="card-img-top" src="images/1.jpg" alt="..." />
+            </a>
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">
+                  Paket Tour Gili Labak Hemat Dan Murah
+                </h5>
+                <!-- Product price-->
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <h6>
+                Gili labak sebuah pantai diseberang sumenep, perjalanan
+                ditempuh dg naik kapal skitar 1 sampai 2 jam, disana bisa
+                lihat ikan nemo dan snorkling, selain itu bs mnikmati es
+                kelapa muda dan ikan bakar
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Sale badge-->
+            <!-- Product image-->
+            <a href="#" data-toggle="modal" data-target="#imageModal2">
+              <img
+                class="card-img-top"
+                src="images/giliiyang.jpg"
+                alt=""
+                height="360"
+              />
+            </a>
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">Paket Tour Giliyang Hemat Dan Murah</h5>
+                <!-- Product reviews-->
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <h6>
+                Gili Iyang dijuluki sebagai Pulau Oksigen, karena daerah ini
+                memiliki kualitas oksigennya lebih baik dari daerah lain.
+                Daerah ini juga dinobatkan sebagai daerah dengan kadar udara
+                terbersih nomor dua di dunia setelah Yordania.
+              </h6>
+            </div>
+          </div>
+        </div>
+
+        <div class="col mb-5">
+          <div class="card h-100">
+            <!-- Product image-->
+            <a href="#" data-toggle="modal" data-target="#imageModal3">
+              <img
+                class="card-img-top"
+                src="images/15.jpg"
+                alt="..."
+                height="360"
+              />
+            </a>
+            <!-- Product details-->
+            <div class="card-body p-4">
+              <div class="text-center">
+                <!-- Product name-->
+                <h5 class="fw-bolder">
+                  Paket Tour Gili Genting Hemat Dan Murah
+                </h5>
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <h6>
+                Selain memiliki pesona alam yang indah, Gili Genting juga kaya
+                akan budaya dan adat istiadat. Jadi, selain menikmati
+                keindahan alamnya, kamu juga dapat belajar mengenai budaya
+                Madura di pulau tersebut.
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer-->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">
+        Copyright &copy; Your Website 2023
+      </p>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <!-- Modal 1 -->
+  <div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="imageModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img src="images/1.jpg" alt="..." class="img-fluid">
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 -->
+  <div class="modal fade" id="imageModal2" tabindex="-1" aria-labelledby="imageModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img src="images/giliiyang.jpg" alt="..." class="img-fluid">
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div class="modal fade" id="imageModal3" tabindex="-1" aria-labelledby="imageModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <img src="images/15.jpg" alt="..." class="img-fluid">
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
