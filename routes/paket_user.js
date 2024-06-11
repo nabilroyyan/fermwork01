@@ -24,3 +24,22 @@ router.get('/', async function(req, res, next) {
         res.redirect('./users/index');
     }
 });
+
+router.post("/store", upload.single("bukti"), async function (req, res, next) {
+    try {
+      let { id_paket, tanggal, status } = req.body;
+      let data = {
+        id_paket,
+        tanggal,
+        status,
+        bukti: req.file.filename,
+      };
+      await model_boking.create(data);
+      req.flash("success", "Berhasil menyimpan data");
+      res.redirect("/boking");
+    } catch (error) {
+      console.error("Error:", error);
+      req.flash("error", "Gagal menyimpan data");
+      res.redirect("/boking");
+    }
+  });

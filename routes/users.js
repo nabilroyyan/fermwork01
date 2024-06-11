@@ -68,6 +68,30 @@ router.get("/detailpaket/:id", isAuthenticated, async function (req, res, next) 
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+router.get("/create/:id", isAuthenticated, async function (req, res, next) {
+  try {
+    let id = req.params.id;
+    let rows = await model_paket.getAll();
+    let rows2 = await model_wisata.getAll();
+    let rows3 = await model_paket.getAll();
+    // Ambil data paket berdasarkan ID
+    let paket = await model_paket.getById(id);
+    // Jika paket tidak ditemukan, kembalikan respon 404
+    if (!paket) {
+      return res.status(404).json({ error: "Paket tidak ditemukan" });
+    }
+    // Render halaman detail paket dengan data paket
+    res.render("users/create", { 
+      paket,
+      data_wisata: rows,
+      data_menu: rows2,
+      data_paket: rows3,
+     });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
 
 module.exports = router;
