@@ -40,8 +40,7 @@ router.get("/create", async function (req, res, next) {
       nama_paket: "",
       deskripsi: "",
       harga: "",
-      tangga: "",
-      status: "",
+      norek: "",
       data_wisata: data_wisata,
     });
   } catch (error) {
@@ -52,17 +51,16 @@ router.get("/create", async function (req, res, next) {
 });
 
 // Route untuk menyimpan paket baru
-router.post("/store", upload.single("gambar"), async function (req, res, next) {
+router.post("/store", upload.single("gambar_paket"), async function (req, res, next) {
   try {
-    let { id_wisata, nama_paket, deskripsi, harga, tanggal, status } = req.body;
+    let { id_wisata, nama_paket, deskripsi, harga, norek } = req.body;
     let data = {
       id_wisata,
       nama_paket,
       deskripsi,
       harga,
-      tanggal,
-      status,
-      gambar: req.file.filename,
+      norek,
+      gambar_paket: req.file.filename,
     };
     await model_paket.create(data);
     req.flash("success", "Berhasil menyimpan data");
@@ -94,13 +92,13 @@ router.get("/edit/:id", async function (req, res, next) {
 // Route untuk memperbarui data paket
 router.post(
   "/update/:id",
-  upload.single("gambar"),
+  upload.single("gambar_paket"),
   async function (req, res, next) {
     let id = req.params.id;
     let filebaru = req.file ? req.file.filename : null;
     let rows2 = await model_wisata.getAll();
     let rows = await model_paket.getById(id);
-    const namaFileLama = rows[0].gambar;
+    const namaFileLama = rows[0].gambar_paket;
     if (filebaru && namaFileLama) {
       const pathFileLama = path.join(
         __dirname,
@@ -109,17 +107,16 @@ router.post(
       );
       fs.unlinkSync(pathFileLama);
     }
-    let { id_wisata, nama_paket, deskripsi, harga, tannggal, status } =
+    let { id_wisata, nama_paket, deskripsi, harga, norek } =
       req.body;
-    let gambar = filebaru || namaFileLama;
+    let gambar_paket = filebaru || namaFileLama;
     let data = {
       id_wisata,
       nama_paket,
       deskripsi,
       harga,
-      tannggal,
-      status,
-      gambar,
+      norek,
+      gambar_paket,
     };
     await model_wisata.update(id, data);
     req.flash("success", "Berhasil update data");
