@@ -69,4 +69,5 @@ router.get("/detailpaket/:id", isAuthenticated, async function (req, res, next) 
   }
 });
 
+
 module.exports = router;
