@@ -18,77 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Route untuk menampilkan semua paket
-<<<<<<< HEAD
-router.get('/', async function(req, res, next) {
-    try {
-        let rows = await model_paket.getAll();
-        let data_wisata = await model_wisata.getAll();
-        res.render('./paket', {
-            data: rows,
-            data_wisata : data,
-        });
-    } catch (error) {
-        console.error('Error:', error);
-        req.flash('error', 'Gagal memuat data paket');
-        res.redirect('./paket');
-    }
-});
-
-// Route untuk menampilkan halaman pembuatan paket
-router.get('/create', async function(req, res, next) {
-    try {
-        let data_wisata = await model_wisata.getAll();
-        res.render('./paket/create', {
-            id_wisata: '',
-            nama_paket: '',
-            deskripsi: '',
-            harga: '',
-            data_wisata: data_wisata
-        });
-    } catch (error) {
-        console.error('Error saat mendapatkan data wisata:', error);
-        req.flash('error', 'Gagal memuat halaman pembuatan paket');
-        res.redirect('/paket/');
-    }
-});
-
-// Route untuk menyimpan paket baru
-router.post('/store', async function(req, res, next) {
-    try {
-        let { id_wisata, nama_paket, deskripsi, harga } = req.body;
-        let data = { id_wisata, nama_paket, deskripsi, harga };
-        await model_paket.create(data);
-        req.flash('success', 'Berhasil menyimpan data');
-        res.redirect('/paket');
-    } catch (error) {
-        console.error('Error:', error);
-        req.flash('error', 'Gagal menyimpan data');
-        res.redirect('/paket');
-    }
-});
-
-// Route untuk menampilkan halaman edit paket
-router.get('/edit/:id', async function(req, res, next) {
-    try {
-        let id = req.params.id;
-        let paket = await model_paket.getById(id);
-        let data_wisata = await model_wisata.getAll();
-        res.render('paket/edit', {
-            paket: paket,
-            data_wisata: data_wisata
-        });
-    } catch (error) {
-        console.error('Error:', error);
-        req.flash('error', 'Gagal memuat halaman edit paket');
-        res.redirect('/paket');
-    }
-});
-
-// Route untuk memperbarui data paket
-router.post('/update/:id', async function(req, res, next) {
-=======
 router.get("/", async function (req, res, next) {
->>>>>>> 1e675a7ca1270eada47144757c9e98d8b76b94e0
   try {
     let rows = await model_paket.getAll();
     res.render("./paket", {

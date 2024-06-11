@@ -33,37 +33,46 @@
 
     <!-- Related items section-->
     <!-- Related items section-->
-<section class="py-5 bg-light">
-  <div class="container px-4 px-lg-5 mt-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-      <% for(var i = 0; i < data_wisata.length; i++){ %>
-      <div class="col mb-5">
-        <div class="card h-100">
-          <!-- Product image-->
-          <img class="card-img-top" src="/images/upload/<%= data_wisata[i].gambar %>" alt="" height="360" />
-          <!-- Product details-->
-          <div class="card-body p-4">
-            <div class="text-center">
-              <!-- Product name-->
-              <h5 class="fw-bolder"><%= data_wisata[i].nama_paket %></h5>
+    <section class="py-5 bg-light">
+      <div class="container px-4 px-lg-5 mt-5">
+        <div
+          class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+        >
+          <% for(var i = 0; i < data_wisata.length; i++){ %>
+          <div class="col mb-5">
+            <div class="card h-100">
+              <!-- Product image-->
+              <img
+                class="card-img-top"
+                src="/images/upload/<%= data_wisata[i].gambar_paket %>"
+                alt=""
+                height="360"
+              />
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder"><%= data_wisata[i].nama_paket %></h5>
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <!-- Link to detail page -->
+                  <a
+                    href="/users/detailpaket/<%= data_wisata[i].id_paket %>"
+                    class="btn btn-secondary"
+                  >
+                    Lihat Paket
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- Product actions-->
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center">
-              <!-- Link to detail page -->
-              <a href="/users/detailpaket/<%= data_wisata[i].id_paket %>" class="btn btn-secondary">
-                Lihat Paket
-              </a>
-            </div>
-          </div>
+          <% } %>
         </div>
       </div>
-      <% } %>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- Footer-->
     <footer class="py-5 bg-dark">
