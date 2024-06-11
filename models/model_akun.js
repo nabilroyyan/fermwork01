@@ -13,6 +13,8 @@ class Model_Akun {
     });
   }
 
+  
+
   static async getById(id) {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM akun WHERE id_akun = ?', id, (err, rows) => {

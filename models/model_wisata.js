@@ -3,7 +3,7 @@ const connection = require('../config/database');
 class model_wisata {
   static async getAll() {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM wisata', (err, rows) => {
+      connection.query(' SELECT * FROM wisata JOIN menu ON wisata.id_menu = menu.id_menu', (err, rows) => {
         if (err) {
           reject(err);
         } else {
@@ -12,6 +12,24 @@ class model_wisata {
       });
     });
   }
+
+  static async getByPaketId(id_paket) {
+    return new Promise((resolve, reject) => {
+      const query = `
+        SELECT *
+        FROM wisata
+        WHERE id_wisata = ?  -- or adjust this query according to your table structure
+      `;
+      connection.query(query, [id_paket], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows[0]);
+        }
+      });
+    });
+  }
+
 
   static async getById(id) {
     return new Promise((resolve, reject) => {

@@ -7,8 +7,10 @@ const model_wisata = require('../models/model_wisata');
 router.get('/', async function(req, res, next) {
     try {
         let rows = await model_paket.getAll();
+        let data_wisata = await model_wisata.getAll();
         res.render('./paket', {
-            data: rows
+            data: rows,
+            data_wisata : data,
         });
     } catch (error) {
         console.error('Error:', error);

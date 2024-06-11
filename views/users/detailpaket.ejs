@@ -32,16 +32,32 @@
     <!-- Product section-->
 
     <!-- Related items section-->
+    <% for(var i = 0; i < data_wisata.length; i++){ %>
     <div class="card container mt-auto py-5">
       <div class="row no-gutters">
         <div class="col-md-5">
-          <img src="/images/giliiyang.jpg" class="card-img" alt="..." />
+          <img src="/images/upload/<%= data_wisata[i].gambar %>" class="card-img" alt="..." />
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-between">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title"><%= data_wisata[i].nama %></h5>
             <p class="card-text">
-              This is a wider card with supporting text below as a natural
+              <%= data_wisata[i].deskripsi %>
+            </p>
+            <p class="card-text">
+              <%= data_wisata[i].alamat %>
+            </p>
+            <p class="card-text">
+              komsumsi
+            </p>
+            <p class="card-text">
+              <%= data_wisata[i].makan %>
+            </p>
+            <p class="card-text">
+              <%= data_wisata[i].minum %>
+            </p>
+            <p class="card-text">
+              <%= data_wisata[i].harga %>
             </p>
             <p class="card-text">
               <small class="text-muted">Last updated 3 mins ago</small>
@@ -53,6 +69,7 @@
         </div>
       </div>
     </div>
+    <% } %>
 
     <!-- Footer-->
     <footer class="py-3 bg-dark mt-auto">

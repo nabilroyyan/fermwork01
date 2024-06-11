@@ -1,5 +1,7 @@
 var express = require("express");
 const model_akun = require("../models/model_akun");
+const model_paket = require("../models/model_paket"); // Tambahkan model_paket
+const model_wisata = require("../models/model_wisata");
 var router = express.Router();
 
 // Middleware to check if user is authenticated
@@ -13,30 +15,58 @@ function isAuthenticated(req, res, next) {
 
 router.get("/", isAuthenticated, async function (req, res, next) {
   try {
-    // Mendapatkan ID pengguna dari sesi
+    // Get user ID from session
     let id = req.session.userId;
 
-    // Mendapatkan data pengguna berdasarkan ID
+    // Get user data by ID
     let userData = await model_akun.getById(id);
-
     if (userData.length > 0) {
-      // Render halaman utama dengan data pengguna
+      // Get all packages
+      let rows = await model_paket.getAll();
+      let rows2 = await model_wisata.getAll();
+
+      // Render the main page with user data and package data
       res.render("users/", {
         title: "Users Home",
         nama_pengguna: userData[0].nama_pengguna,
-        id_users: userData[0].id_users,
-        foto: userData[0].foto,
+        id_akun: userData[0].id_akun,
+        gambar: userData[0].gambar,
+        data_wisata: rows,
+        data_menu: rows2,
       });
     } else {
       res.status(401).json({ error: "User tidak ditemukan" });
     }
   } catch (error) {
-    res.status(501).json("Butuh akses login");
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-router.get("/detailpaket", function (req, res, next) {
-  res.render("users/detailpaket");
+
+
+// Route untuk menampilkan halaman detail paket
+router.get("/detailpaket/:id", isAuthenticated, async function (req, res, next) {
+  try {
+    let id = req.params.id;
+    let rows = await model_paket.getAll();
+    let rows2 = await model_wisata.getAll();
+    // Ambil data paket berdasarkan ID
+    let paket = await model_paket.getById(id);
+    // Jika paket tidak ditemukan, kembalikan respon 404
+    if (!paket) {
+      return res.status(404).json({ error: "Paket tidak ditemukan" });
+    }
+    // Render halaman detail paket dengan data paket
+    res.render("users/detailpaket", { 
+      paket,
+      data_wisata: rows,
+      data_menu: rows2,
+     });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 module.exports = router;
