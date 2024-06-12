@@ -14,6 +14,7 @@ var adminRouter = require("./routes/admin");
 var wisataRouter = require("./routes/wisata");
 var paketRouter = require("./routes/paket");
 var menuRouter = require("./routes/menu");
+var bokingRouter = require("./routes/boking");
  
 const { strict } = require("assert");
 
@@ -54,6 +55,7 @@ app.use("/admin", adminRouter);
 app.use("/wisata", wisataRouter);
 app.use("/paket", paketRouter);
 app.use("/menu", menuRouter);
+app.use("/boking", bokingRouter);
 
 // // catch 404 and forward to error handler
 // app.use(function (req, res, next) {

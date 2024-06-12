@@ -59,10 +59,12 @@ router.post("/store", upload.single("bukti"), async function (req, res, next) {
     };
     await model_boking.create(data);
     req.flash("success", "Berhasil menyimpan data");
-    res.redirect("/boking");
+    res.redirect("/users");
   } catch (error) {
     console.error("Error:", error);
     req.flash("error", "Gagal menyimpan data");
-    res.redirect("/boking");
+    res.redirect("/users");
   }
 });
+
+module.exports = router
