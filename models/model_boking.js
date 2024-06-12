@@ -13,6 +13,22 @@ class model_boking {
     });
   }
 
+  static async getbokingbyid(id_akun) {
+    return new Promise((resolve, reject) => {
+      const query = `
+        SELECT * FROM boking JOIN akun ON boking.id_akun = akun.id_akun WHERE boking.id_boking = ?
+      `;
+      connection.query(query, [id_akun], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
+
+
   static async getById(id) {
     return new Promise((resolve, reject) => {
       connection.query('SELECT * FROM boking WHERE id_boking = ?', id, (err, rows) => {

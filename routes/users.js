@@ -62,6 +62,7 @@ router.get("/detailpaket/:id", isAuthenticated, async function (req, res, next) 
       paket,
       data_wisata: rows,
       data_menu: rows2,
+      id
      });
   } catch (error) {
     console.error(error);
@@ -70,6 +71,7 @@ router.get("/detailpaket/:id", isAuthenticated, async function (req, res, next) 
 });
 router.get("/create/:id", isAuthenticated, async function (req, res, next) {
   try {
+    let idUser = req.session.userId;
     let id = req.params.id;
     let rows = await model_paket.getAll();
     let rows2 = await model_wisata.getAll();
@@ -83,9 +85,10 @@ router.get("/create/:id", isAuthenticated, async function (req, res, next) {
     // Render halaman detail paket dengan data paket
     res.render("users/create", { 
       paket,
-      data_wisata: rows,
+      data: rows,
       data_menu: rows2,
       data_paket: rows3,
+      id: idUser
      });
   } catch (error) {
     console.error(error);

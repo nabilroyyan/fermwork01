@@ -49,22 +49,25 @@ router.get("/create", async function (req, res, next) {
 
 // Route untuk menyimpan boking baru
 router.post("/store", upload.single("bukti"), async function (req, res, next) {
-  try {
-    let { id_paket, tanggal, status } = req.body;
-    let data = {
-      id_paket,
-      tanggal,
-      status,
-      bukti: req.file.filename,
-    };
-    await model_boking.create(data);
-    req.flash("success", "Berhasil menyimpan data");
-    res.redirect("/users");
-  } catch (error) {
-    console.error("Error:", error);
-    req.flash("error", "Gagal menyimpan data");
-    res.redirect("/users");
-  }
-});
+    try {
+      let { id_paket, tanggal, status, id_akun } = req.body;
+      let getbokingbyid = await model_boking.getbokingbyid(id_akun);
+      let data = {
+        id_paket,
+        tanggal,
+        status,
+        bukti: req.file.filename,
+        id_akun: id_akun
+      };
+      await model_boking.create(data);
+      req.flash("success", "Berhasil menyimpan data");
+      res.redirect("/users");
+    } catch (error) {
+      console.error("Error saat menyimpan data:", error);
+      req.flash("error", "Gagal menyimpan data");
+      res.redirect("/users");
+    }
+  });
+  
 
 module.exports = router
