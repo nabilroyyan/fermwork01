@@ -36,40 +36,52 @@
     <div class="card container mt-auto py-5">
       <div class="row no-gutters">
         <div class="col-md-5">
-          <img src="/images/upload/<%= data_wisata[i].gambar %>" class="card-img" alt="..." />
+          <img
+            src="/images/upload/<%= data_wisata[i].gambar %>"
+            class="card-img"
+            alt="..."
+          />
         </div>
         <div class="col-md-6 d-flex flex-column justify-content-between">
-          <div class="card-body">
-            <h5 class="card-title"><%= data_wisata[i].nama %></h5>
-            <p class="card-text">
-              <%= data_wisata[i].deskripsi %>
-            </p>
-            <p class="card-text">
-              <%= data_wisata[i].alamat %>
-            </p>
-            <p class="card-text">
-              komsumsi
-            </p>
-            <p class="card-text">
-              <%= data_wisata[i].makan %>
-            </p>
-            <p class="card-text">
-              <%= data_wisata[i].minum %>
-            </p>
-            <p class="card-text">
-              <%= data_wisata[i].harga %>
-            </p>
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
-          </div>
-          </div>
-            <div class="d-flex">
-              <a type="button" href="/users/create/<%= data_wisata[i].id_paket %>" class="btn btn-secondary ms-auto">boking</a>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-primary font-weight-bold">
+                <%= data_wisata[i].nama %>
+              </h5>
+              <p class="card-text text-muted"><%= data_wisata[i].alamat %></p>
+              <p class="card-text">
+                <i class="fas fa-map-marker-alt"></i> <%=
+                data_wisata[i].deskripsi %>
+              </p>
+              <h6 class="card-subtitle mb-2 text-muted">Konsumsi</h6>
+              <ul class="list-unstyled">
+                <li>
+                  <i class="fas fa-utensils"></i>- <%= data_wisata[i].makan %>
+                </li>
+                <li>
+                  <i class="fas fa-coffee"></i>- <%= data_wisata[i].minum %>
+                </li>
+                <br />
+                <li>
+                  <i class="fas fa-money-bill-wave"></i>Cuma dengan harga <%=
+                  data_wisata[i].harga %>
+                </li>
+              </ul>
             </div>
           </div>
-          </div>
-        <% } %>
+        </div>
+
+        <div class="d-flex">
+          <a
+            type="button"
+            href="/users/create/<%= data_wisata[i].id_paket %>"
+            class="btn btn-secondary ms-auto"
+            >boking</a
+          >
+        </div>
+      </div>
+    </div>
+    <% } %>
 
     <!-- Footer-->
     <footer class="py-3 bg-dark mt-auto">
