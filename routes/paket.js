@@ -40,7 +40,8 @@ router.get("/create", async function (req, res, next) {
       nama_paket: "",
       deskripsi: "",
       harga: "",
-      norek: "",
+      kegiatan: "",
+      kapasitas:"",
       data_wisata: data_wisata,
     });
   } catch (error) {
@@ -53,13 +54,14 @@ router.get("/create", async function (req, res, next) {
 // Route untuk menyimpan paket baru
 router.post("/store", upload.single("gambar_paket"), async function (req, res, next) {
   try {
-    let { id_wisata, nama_paket, deskripsi, harga, norek } = req.body;
+    let { id_wisata, nama_paket, deskripsi, harga, kegiatan, kapasitas } = req.body;
     let data = {
       id_wisata,
       nama_paket,
       deskripsi,
       harga,
-      norek,
+      kegiatan,
+      kapasitas,
       gambar_paket: req.file.filename,
     };
     await model_paket.create(data);
@@ -107,7 +109,7 @@ router.post(
       );
       fs.unlinkSync(pathFileLama);
     }
-    let { id_wisata, nama_paket, deskripsi, harga, norek } =
+    let { id_wisata, nama_paket, deskripsi, harga, kegiatan, kapasitas } =
       req.body;
     let gambar_paket = filebaru || namaFileLama;
     let data = {
@@ -115,8 +117,9 @@ router.post(
       nama_paket,
       deskripsi,
       harga,
-      norek,
-      gambar_paket,
+      kegiatan,
+      kapasitas,
+
     };
     await model_wisata.update(id, data);
     req.flash("success", "Berhasil update data");
