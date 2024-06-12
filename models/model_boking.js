@@ -3,7 +3,10 @@ const connection = require('../config/database');
 class model_boking {
   static async getAll() {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM boking', (err, rows) => {
+      connection.query(`
+        SELECT * FROM boking JOIN paket ON boking.id_paket = paket.id_paket
+        JOIN akun ON boking.id_akun = akun.id_akun 
+      `, (err, rows) => {
         if (err) {
           reject(err);
         } else {
@@ -31,7 +34,7 @@ class model_boking {
 
   static async getById(id) {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM boking WHERE id_boking = ?', id, (err, rows) => {
+      connection.query('SELECT * FROM boking LEFT JOIN paket ON boking.id_paket = paket.id_paket LEFT JOIN akun ON boking.id_akun = akun.id_akun WHERE boking.id_boking = ?', id, (err, rows) => {
         if (err) {
           reject(err);
         } else {
