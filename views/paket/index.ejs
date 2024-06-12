@@ -35,7 +35,8 @@
                   <th>Nama Paket</th>
                   <th>Deskripsi</th>
                   <th>Harga</th>
-                  <th>ID paket</th>
+                  <th>Kegiatan</th>
+                  <th>Kapasitas</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -46,16 +47,16 @@
                     <td><%= data[i].nama_paket %></td>
                     <td><%= data[i].deskripsi %></td>
                     <td><%= data[i].harga %></td> 
-                    <td><%= data[i].nama_wisata %></td> 
+                    <td><%= data[i].kegiatan %></td>
+                    <td><%= data[i].kapasitas %></td>
                     <td class="table-action">
                       <a href="/paket/edit/<%= data[i].id_paket %>" class="action-icon">
                         <i class="mdi mdi-pencil"></i
                       ></a>
-                      <a href="/paket/delete/<%= data[i].id_paket  %>" class="action-icon">
+                      <a href="/paket/delete/<%= data[i].id_paket %>" class="action-icon">
                         <i class="mdi mdi-delete"></i
                       ></a>
                     </td>
-                  </tr>
                   </tr>
                 <% } %>
               </tbody>

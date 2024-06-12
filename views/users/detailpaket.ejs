@@ -62,6 +62,19 @@
                   <i class="fas fa-coffee"></i>- <%= data_wisata[i].minum %>
                 </li>
                 <br />
+                <h6 class="card-subtitle mb-2 text-muted">Kegiatan</h6>
+                <ul class="list-unstyled">
+                    <% const activities = data_wisata[i].kegiatan.split('\n'); // Split kegiatan by newline %>
+                    <% activities.forEach(activity => { %>
+                        <li><i class="fas fa-coffee"></i> <%= activity.trim() %></li> 
+                    <% }); %>
+                </ul>
+                <br>
+                <h6 class="card-subtitle mb-2 text-muted">Kapasitas</h6>
+                <li>
+                  <i class="fas fa-coffee"></i>- <%= data_wisata[i].kapasitas %>
+                </li>
+                <br>
                 <li>
                   <i class="fas fa-money-bill-wave"
                     >Cuma dengan harga Rp<%= data_wisata[i].harga %></i
@@ -69,9 +82,7 @@
                 </li>
                 <br />
 
-                <li>
-                  <i class="fas fa-coffee"></i>- <%= data_wisata[i].norek %>
-                </li>
+          
               </ul>
             </div>
           </div>
