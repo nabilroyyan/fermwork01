@@ -38,11 +38,11 @@ router.post("/store", async (req, res) => {
     };
     await ModelCustom.create(data);
     req.flash("success", "Berhasil menyimpan data");
-    res.redirect("/custom/");
+    res.redirect("/custom");
   } catch (error) {
     console.error("Error saat menyimpan data:", error);
     req.flash("error", "Gagal menyimpan data");
-    res.redirect("/custom/");
+    res.redirect("/custom/create");
   }
 });
 
@@ -65,18 +65,17 @@ router.get("/edit/:id", async (req, res) => {
 router.post("/update/:id", async (req, res) => {
   try {
     let id = req.params.id;
-    let { deskripsi, status_request } = req.body;
+    let {status_request } = req.body;
     let data = {
-      deskripsi,
       status_request,
     };
     await ModelCustom.update(id, data);
     req.flash("success", "Berhasil update data");
-    res.redirect("/custom/");
+    res.redirect("/custom");
   } catch (error) {
     console.error("Error saat menyimpan perubahan data:", error);
     req.flash("error", "Gagal menyimpan perubahan data");
-    res.redirect("/custom/");
+    res.redirect("/custom");
   }
 });
 
