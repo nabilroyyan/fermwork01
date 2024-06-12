@@ -139,17 +139,18 @@
         class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
       >
         <div class="col mb-5">
+          <% for(var i = 0; i < data_wisata.length; i++){ %>
           <div class="card h-100">
             <!-- Product image-->
             <a href="#" data-toggle="modal" data-target="#imageModal1">
-              <img class="card-img-top" src="images/1.jpg" alt="..." />
+              <img class="card-img-top" src="/images/upload/<%= data_wisata[i].gambar_paket %>" alt="..." />
             </a>
             <!-- Product details-->
             <div class="card-body p-4">
               <div class="text-center">
                 <!-- Product name-->
                 <h5 class="fw-bolder">
-                  Paket Tour Gili Labak Hemat Dan Murah
+                  <%= data_wisata[i].nama_paket %>
                 </h5>
                 <!-- Product price-->
               </div>
@@ -164,69 +165,7 @@
               </h6>
             </div>
           </div>
-        </div>
-        <div class="col mb-5">
-          <div class="card h-100">
-            <!-- Sale badge-->
-            <!-- Product image-->
-            <a href="#" data-toggle="modal" data-target="#imageModal2">
-              <img
-                class="card-img-top"
-                src="images/giliiyang.jpg"
-                alt=""
-                height="360"
-              />
-            </a>
-            <!-- Product details-->
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">Paket Tour Giliyang Hemat Dan Murah</h5>
-                <!-- Product reviews-->
-              </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <h6>
-                Gili Iyang dijuluki sebagai Pulau Oksigen, karena daerah ini
-                memiliki kualitas oksigennya lebih baik dari daerah lain.
-                Daerah ini juga dinobatkan sebagai daerah dengan kadar udara
-                terbersih nomor dua di dunia setelah Yordania.
-              </h6>
-            </div>
-          </div>
-        </div>
-
-        <div class="col mb-5">
-          <div class="card h-100">
-            <!-- Product image-->
-            <a href="#" data-toggle="modal" data-target="#imageModal3">
-              <img
-                class="card-img-top"
-                src="images/15.jpg"
-                alt="..."
-                height="360"
-              />
-            </a>
-            <!-- Product details-->
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">
-                  Paket Tour Gili Genting Hemat Dan Murah
-                </h5>
-              </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <h6>
-                Selain memiliki pesona alam yang indah, Gili Genting juga kaya
-                akan budaya dan adat istiadat. Jadi, selain menikmati
-                keindahan alamnya, kamu juga dapat belajar mengenai budaya
-                Madura di pulau tersebut.
-              </h6>
-            </div>
-          </div>
+          <% } %>
         </div>
       </div>
     </div>

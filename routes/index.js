@@ -2,10 +2,17 @@ var express = require("express");
 var router = express.Router();
 const bcrypt = require("bcrypt");
 const Model_Akun = require("../models/model_akun");
+const model_paket = require("../models/model_paket"); // Tambahkan model_paket
+const model_wisata = require("../models/model_wisata");
 
 // GET home page
-router.get("/", function (req, res) {
-  res.render("index", { title: "Express" });
+router.get("/", async function (req, res) {
+  let rows = await model_paket.getAll();
+  let rows2 = await model_wisata.getAll();
+  res.render("index", {
+    data_wisata: rows,
+    data_menu: rows2,
+  });
 });
 
 // GET register page
