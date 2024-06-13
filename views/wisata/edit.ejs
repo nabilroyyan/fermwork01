@@ -30,11 +30,11 @@
     <!-- Begin page -->
     <div class="wrapper">
         <!-- ========== Topbar Start ========== -->
-        <%- include('../partials/_head') %>
+        <% include('../partials/_head') %>
         <!-- ========== Topbar End ========== -->
 
         <!-- ========== Left Sidebar Start ========== -->
-        <%- include('../partials/_sidebar') %>
+        <% include('../partials/_sidebar') %>
         <!-- ========== Left Sidebar End ========== -->
 
         <!-- ============================================================== -->
@@ -43,21 +43,31 @@
         <div class="content-page">
             <div class="content">
                 <div class="container-fluid">
-                    <form action="/wisata/update/<%= data[0].id_wisata %>" method="POST" enctype="multipart/form-data">
+                    <form action="/wisata/update/<%= wisata.id_wisata %>" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="_method" value="PUT"> <!-- Hidden field for HTTP method -->
                         <div class="mb-3">
                             <label class="form-label" for="nama">Nama Wisata</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Wisata" value="<%= data[0].nama %>" required />
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Wisata" value="<%= wisata.nama %>" required />
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="alamat">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" value="<%= data[0].alamat %>" required />
+                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" value="<%= wisata.alamat %>" required />
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="deskripsi">Deskripsi</label>
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi" required><%= data[0].deskripsi %></textarea>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi" required><%= wisata.deskripsi %></textarea>
                             <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_menu" class="form-label">Wisata:</label>
+                            <select name="id_menu" id="id_menu" class="form-select" required>
+                                <option value="" disabled selected>Pilih menu</option>
+                                <% menu.forEach(menu => { %>
+                                    <option value="<%= menu.id_menu %>"><%= menu.nama_menu %></option>
+                                <% }); %>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="gambar">Gambar</label>

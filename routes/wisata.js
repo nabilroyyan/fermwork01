@@ -28,8 +28,8 @@ router.get("/create", async function (req, res, next) {
   let rows = await model_wisata.getAll();
   let rows2 = await model_menu.getAll();
   res.render("wisata/create", {
-    data: rows,
-    data2: rows2,
+    wisata: rows,
+    menu: rows2,
   });
 });
 
@@ -63,8 +63,8 @@ router.get("/edit/:id", async function (req, res, next) {
       return res.redirect("/wisata");
     }
     res.render("wisata/edit", {
-      data2: rows2[0],
-      data: rows[0], // Send the first row data directly
+      wisata: rows[0], // Ensure 'wisata' is the correct key to access the data in EJS
+      menu: rows2, // Sending all menus data
     });
   } catch (error) {
     console.error(error);
@@ -72,6 +72,7 @@ router.get("/edit/:id", async function (req, res, next) {
     res.redirect("/wisata");
   }
 });
+
 
 router.post(
   "/update/:id",

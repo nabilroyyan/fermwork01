@@ -4,39 +4,25 @@
     <meta charset="utf-8" />
     <title>Dashboard | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      content="A fully featured admin theme which can be used to build CRM, CMS, etc."
-      name="description"
-    />
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <link rel="shortcut icon" href="/assets/images/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="/assets/vendor/daterangepicker/daterangepicker.css"
-    />
-    <link
-      rel="stylesheet"
-      href="/assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css"
-    />
+    <link rel="stylesheet" href="/assets/vendor/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="/assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" />
     <script src="/assets/js/hyper-config.js"></script>
-    <link
-      href="/assets/css/app-saas.min.css"
-      rel="stylesheet"
-      type="text/css"
-      id="app-style"
-    />
+    <link href="/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
     <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
     <div class="wrapper">
-      <%- include('../partials/_head') %> <%- include('../partials/_sidebar') %>
+      <%- include('../partials/_head') %>
+      <%- include('../partials/_sidebar') %>
 
       <div class="content-page">
         <div class="content">
           <div class="container-fluid">
-            <form action="/paket/update/<%= paket.id_paket %>" method="POST">
-
+            <form action="/paket/update/<%= paket.id_paket %>" method="POST" enctype="multipart/form-data">
               <div class="mb-3">
                 <label class="form-label" for="nama_paket">Nama Paket</label>
                 <input
@@ -45,6 +31,7 @@
                   id="nama_paket"
                   name="nama_paket"
                   placeholder="Nama Paket"
+                  value="<%= paket.nama_paket %>"
                   required
                 />
               </div>
@@ -56,6 +43,7 @@
                   id="deskripsi"
                   name="deskripsi"
                   placeholder="Deskripsi"
+                  value="<%= paket.deskripsi %>"
                   required
                 />
               </div>
@@ -67,27 +55,29 @@
                   id="harga"
                   name="harga"
                   placeholder="Harga"
+                  value="<%= paket.harga %>"
                   required
                 />
               </div>
               <div class="mb-3">
                 <label class="form-label" for="kegiatan">Kegiatan</label>
-                  <textarea
-                    class="form-control"
-                    id="kegiatan"
-                    name="kegiatan"
-                    placeholder="Kegiatan"
-                    required
-                  ></textarea>                
+                <textarea
+                  class="form-control"
+                  id="kegiatan"
+                  name="kegiatan"
+                  placeholder="Kegiatan"
+                  required
+                ><%= paket.kegiatan %></textarea>
               </div>
               <div class="mb-3">
-                <label class="form-label" for="Kapasitas">Kapasitas</label>
+                <label class="form-label" for="kapasitas">Kapasitas</label>
                 <input
                   type="text"
                   class="form-control"
                   id="kapasitas"
                   name="kapasitas"
                   placeholder="Kapasitas"
+                  value="<%= paket.kapasitas %>"
                   required
                 />
               </div>
@@ -98,24 +88,17 @@
                   class="form-control"
                   id="gambar_paket"
                   name="gambar_paket"
-                  required
                 />
                 <div class="valid-feedback">Looks good!</div>
               </div>
-
               <div class="mb-3">
                 <label for="id_wisata" class="form-label">Wisata:</label>
-                <select
-                  name="id_wisata"
-                  id="id_wisata"
-                  class="form-select"
-                  required
-                >
+                <select name="id_wisata" id="id_wisata" class="form-select" required>
                   <option value="" disabled selected>Pilih wisata</option>
                   <% data_wisata.forEach(wisata => { %>
-                  <option value="<%= wisata.id_wisata %>">
-                    <%= wisata.nama %>
-                  </option>
+                    <option value="<%= wisata.id_wisata %>" <%= wisata.id_wisata === paket.id_wisata ? 'selected' : '' %>>
+                      <%= wisata.nama %>
+                    </option>
                   <% }); %>
                 </select>
               </div>

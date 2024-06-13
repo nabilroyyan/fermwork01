@@ -83,7 +83,7 @@
                 <label for="id_menu" class="form-label">Wisata:</label>
                 <select name="id_menu" id="id_menu" class="form-select" required>
                     <option value="" disabled selected>Pilih menu</option>
-                    <% data2.forEach(menu => { %>
+                    <% menu.forEach(menu => { %>
                         <option value="<%= menu.id_menu %>"><%= menu.nama_menu %></option>
                     <% }); %>
                 </select>

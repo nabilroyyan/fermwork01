@@ -57,13 +57,13 @@ router.get('/edit/:id', async function(req, res, next) {
   try {
       let id = req.params.id;
       let menu = await model_menu.getById(id);
-      res.render('admin/editmenu', {
+      res.render('menu/edit', {
           menu: menu,
       });
   } catch (error) {
       console.error('Error:', error);
       req.flash('error', 'Gagal memuat halaman edit menu');
-      res.redirect('admin/menu');
+      res.redirect('menu/edit');
   }
 });
 

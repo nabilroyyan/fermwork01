@@ -1,15 +1,16 @@
 const connection = require('../config/database');
 
-class model_paket {
-  static async getAll() {
+class ModelPaket {
+  static getAll() {
     return new Promise((resolve, reject) => {
       const query = `
-        SELECT * FROM paket JOIN wisata ON paket.id_wisata = wisata.id_wisata
+        SELECT * FROM paket 
+        JOIN wisata ON paket.id_wisata = wisata.id_wisata
         JOIN menu ON wisata.id_menu = menu.id_menu
       `;
       connection.query(query, (err, rows) => {
         if (err) {
-          reject(err);
+          reject(new Error("Failed to fetch all packages"));
         } else {
           resolve(rows);
         }
@@ -17,24 +18,7 @@ class model_paket {
     });
   }
 
-  static async getByPaketId(id_paket) {
-    return new Promise((resolve, reject) => {
-      const query = `
-        SELECT * FROM paket JOIN wisata ON paket.id_wisata = wisata.id_wisata WHERE paket.id_paket = ?
-      `;
-      connection.query(query, [id_paket], (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows);
-        }
-      });
-    });
-  }
-
-  
-
-  static async getById(id) {
+  static getById(id) {
     return new Promise((resolve, reject) => {
       const query = `
         SELECT p.*, w.nama AS nama_wisata
@@ -44,19 +28,19 @@ class model_paket {
       `;
       connection.query(query, [id], (err, rows) => {
         if (err) {
-          reject(err);
+          reject(new Error("Failed to fetch package by ID"));
         } else {
-          resolve(rows[0]);
+          resolve(rows.length > 0 ? rows[0] : null);
         }
       });
     });
   }
 
-  static async create(data) {
+  static create(data) {
     return new Promise((resolve, reject) => {
       connection.query('INSERT INTO paket SET ?', data, (err, result) => {
         if (err) {
-          reject(err);
+          reject(new Error("Failed to create package"));
         } else {
           resolve(result.insertId);
         }
@@ -64,11 +48,11 @@ class model_paket {
     });
   }
 
-  static async update(id, data) {
+  static update(id, data) {
     return new Promise((resolve, reject) => {
       connection.query('UPDATE paket SET ? WHERE id_paket = ?', [data, id], (err, result) => {
         if (err) {
-          reject(err);
+          reject(new Error("Failed to update package"));
         } else {
           resolve(result.affectedRows);
         }
@@ -76,11 +60,11 @@ class model_paket {
     });
   }
 
-  static async remove(id) {
+  static remove(id) {
     return new Promise((resolve, reject) => {
       connection.query('DELETE FROM paket WHERE id_paket = ?', [id], (err, result) => {
         if (err) {
-          reject(err);
+          reject(new Error("Failed to delete package"));
         } else {
           resolve(result.affectedRows);
         }
@@ -89,4 +73,4 @@ class model_paket {
   }
 }
 
-module.exports = model_paket;
+module.exports = ModelPaket;
