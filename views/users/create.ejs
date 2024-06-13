@@ -81,6 +81,17 @@
               <div class="valid-feedback">Looks good!</div>
               <div class="invalid-feedback">Please select a date.</div>
             </div>
+            <div class="mb-3">
+              <label for="id_menu" class="form-label">menu:</label>
+              <select name="id_menu" id="id_menu" class="form-select" required>
+                <option value="" disabled selected>Pilih menu</option>
+                <% datamenu.forEach(datamenu => { %>
+                <option value="<%= datamenu.id_menu %>">
+                  <%= datamenu.nama_menu %>
+                </option>
+                <% }); %>
+              </select>
+            </div>
             <div class="mb-3" hidden>
               <label for="id_paket" class="form-label">Deskripsi</label>
               <textarea

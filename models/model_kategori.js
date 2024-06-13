@@ -1,9 +1,9 @@
 const connection = require("../config/database");
 
-class model_wisata {
+class ModelKategori {
   static async getAll() {
     return new Promise((resolve, reject) => {
-      connection.query(" SELECT * FROM wisata", (err, rows) => {
+      connection.query("SELECT * FROM kategori", (err, rows) => {
         if (err) {
           reject(err);
         } else {
@@ -13,33 +13,16 @@ class model_wisata {
     });
   }
 
-  static async getByPaketId(id_paket) {
-    return new Promise((resolve, reject) => {
-      const query = `
-        SELECT *
-        FROM wisata
-        WHERE id_wisata = ?  -- or adjust this query according to your table structure
-      `;
-      connection.query(query, [id_paket], (err, rows) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(rows[0]);
-        }
-      });
-    });
-  }
-
   static async getById(id) {
     return new Promise((resolve, reject) => {
       connection.query(
-        "SELECT * FROM wisata WHERE id_wisata = ?",
+        "SELECT * FROM kategori WHERE id_kategori = ?",
         id,
         (err, rows) => {
           if (err) {
             reject(err);
           } else {
-            resolve(rows); // Ambil data pertama karena id_wisata adalah primary key
+            resolve(rows[0]); // Ambil data pertama karena id_kategori adalah primary key
           }
         }
       );
@@ -48,7 +31,7 @@ class model_wisata {
 
   static async create(data) {
     return new Promise((resolve, reject) => {
-      connection.query("INSERT INTO wisata SET ?", data, (err, result) => {
+      connection.query("INSERT INTO kategori SET ?", data, (err, result) => {
         if (err) {
           reject(err);
         } else {
@@ -61,7 +44,7 @@ class model_wisata {
   static async update(id, data) {
     return new Promise((resolve, reject) => {
       connection.query(
-        "UPDATE wisata SET ? WHERE id_wisata = ?",
+        "UPDATE kategori SET ? WHERE id_kategori = ?",
         [data, id],
         (err, result) => {
           if (err) {
@@ -77,7 +60,7 @@ class model_wisata {
   static async remove(id) {
     return new Promise((resolve, reject) => {
       connection.query(
-        "DELETE FROM wisata WHERE id_wisata = ?",
+        "DELETE FROM kategori WHERE id_kategori = ?",
         id,
         (err, result) => {
           if (err) {
@@ -91,4 +74,4 @@ class model_wisata {
   }
 }
 
-module.exports = model_wisata;
+module.exports = ModelKategori;

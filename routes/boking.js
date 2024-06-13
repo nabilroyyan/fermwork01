@@ -6,6 +6,7 @@ const multer = require("multer");
 const model_boking = require("../models/model_boking");
 const model_paket = require("../models/model_paket");
 const Model_Akun = require("../models/model_akun");
+const model_menu = require("../models/model_menu");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -22,8 +23,10 @@ const upload = multer({ storage: storage });
 router.get("/", async function (req, res, next) {
   try {
     let rows = await model_boking.getAll();
+    let manu = await model_menu.getAll();
     res.render("./boking", {
       data: rows,
+      menu: menu,
     });
   } catch (error) {
     console.error("Error:", error);
@@ -37,8 +40,10 @@ router.get("/create", async function (req, res, next) {
   try {
     let data_wisata = await model_paket.getAll();
     let data_boking = await model_boking.getAll();
+    let data_menu = await model_menu.getAll();
     res.render("./boking/create", {
       data_wisata: data_wisata,
+      data_menu: data_menu,
       data_boking: data_boking,
     });
   } catch (error) {
@@ -50,75 +55,75 @@ router.get("/create", async function (req, res, next) {
 
 // Route untuk menyimpan boking baru
 router.post("/store", upload.single("bukti"), async function (req, res, next) {
-    try {
-      let { id_paket, tanggal, status, id_akun } = req.body;
-      let getbokingbyid = await model_boking.getbokingbyid(id_akun);
-      let data = {
-        id_paket,
-        tanggal,
-        status,
-        bukti: req.file.filename,
-        id_akun: id_akun
-      };
-      await model_boking.create(data);
-      req.flash("success", "Berhasil menyimpan data");
-      res.redirect("/users");
-    } catch (error) {
-      console.error("Error saat menyimpan data:", error);
-      req.flash("error", "Gagal menyimpan data");
-      res.redirect("/users");
-    }
-  });
-
-  router.get("/", async function (req, res, next) {
-    try {
-      let rows = await model_boking.getAll();
-      res.render("./boking", {
-        data: rows,
-      });
-    } catch (error) {
-      console.error("Error:", error);
-      req.flash("error", "Gagal memuat data boking");
-      res.redirect("./boking");
-    }
-  });
-  
-  router.get("/edit/:id", async function (req, res, next) {
-    try {
-      let id = req.params.id;
-      let boking = await model_boking.getById(id);
-      let data_akun = await Model_Akun.getAll();
-      res.render("boking/edit", {
-        boking: boking,
-        data_akun: data_akun,
-      });
-    } catch (error) {
-      console.error("Error:", error);
-      req.flash("error", "Gagal memuat halaman edit boking");
-      res.redirect("/boking");
-    }
-  });
-
-
-  router.post('/update/:id', async function(req, res, next) {
-    try {
-        let id = req.params.id;
-        let { id_paket, id_akun, tanggal, bukti, status } = req.body;
-        let data = {
-            id_paket,
-            id_akun,
-            tanggal,
-            bukti,
-            status,
-        };
-        await model_boking.update(id, data);
-        req.flash('success', 'Berhasil update data menu');
-        res.redirect('/boking');
-    } catch (error) {
-        console.error('Error:', error);
-        req.flash('error', 'Gagal menyimpan data menu');
-        res.redirect('/boking');
-    }
+  try {
+    let { id_paket, tanggal, status, id_akun, id_menu } = req.body;
+    let getbokingbyid = await model_boking.getbokingbyid(id_akun);
+    let data = {
+      id_paket,
+      tanggal,
+      status,
+      bukti: req.file.filename,
+      id_akun: id_akun,
+      id_menu,
+    };
+    await model_boking.create(data);
+    req.flash("success", "Berhasil menyimpan data");
+    res.redirect("/users");
+  } catch (error) {
+    console.error("Error saat menyimpan data:", error);
+    req.flash("error", "Gagal menyimpan data");
+    res.redirect("/users");
+  }
 });
 
-module.exports = router
+router.get("/", async function (req, res, next) {
+  try {
+    let rows = await model_boking.getAll();
+    res.render("./boking", {
+      data: rows,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    req.flash("error", "Gagal memuat data boking");
+    res.redirect("./boking");
+  }
+});
+
+router.get("/edit/:id", async function (req, res, next) {
+  try {
+    let id = req.params.id;
+    let boking = await model_boking.getById(id);
+    let data_akun = await Model_Akun.getAll();
+    res.render("boking/edit", {
+      boking: boking,
+      data_akun: data_akun,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    req.flash("error", "Gagal memuat halaman edit boking");
+    res.redirect("/boking");
+  }
+});
+
+router.post("/update/:id", async function (req, res, next) {
+  try {
+    let id = req.params.id;
+    let { id_paket, id_akun, tanggal, bukti, status } = req.body;
+    let data = {
+      id_paket,
+      id_akun,
+      tanggal,
+      bukti,
+      status,
+    };
+    await model_boking.update(id, data);
+    req.flash("success", "Berhasil update data menu");
+    res.redirect("/boking");
+  } catch (error) {
+    console.error("Error:", error);
+    req.flash("error", "Gagal menyimpan data menu");
+    res.redirect("/boking");
+  }
+});
+
+module.exports = router;

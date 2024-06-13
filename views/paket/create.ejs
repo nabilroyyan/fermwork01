@@ -75,13 +75,13 @@
               </div>
               <div class="mb-3">
                 <label class="form-label" for="kegiatan">Kegiatan</label>
-                  <textarea
-                    class="form-control"
-                    id="kegiatan"
-                    name="kegiatan"
-                    placeholder="Kegiatan"
-                    required
-                  ></textarea>                
+                <textarea
+                  class="form-control"
+                  id="kegiatan"
+                  name="kegiatan"
+                  placeholder="Kegiatan"
+                  required
+                ></textarea>
               </div>
               <div class="mb-3">
                 <label class="form-label" for="Kapasitas">Kapasitas</label>
@@ -118,6 +118,23 @@
                   <% data_wisata.forEach(wisata => { %>
                   <option value="<%= wisata.id_wisata %>">
                     <%= wisata.nama %>
+                  </option>
+                  <% }); %>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="id_kategori" class="form-label">Kategori:</label>
+                <select
+                  name="id_kategori"
+                  id="id_kategori"
+                  class="form-select"
+                  required
+                >
+                  <option value="" disabled selected>Pilih Kategori</option>
+                  <% data_kategori.forEach(kategori => { %>
+                  <option value="<%= kategori.id_kategori %>">
+                    <%= kategori.nama_kategori %>
                   </option>
                   <% }); %>
                 </select>
