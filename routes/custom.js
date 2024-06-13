@@ -19,8 +19,10 @@ router.get("/", async (req, res) => {
 // Route untuk menampilkan halaman pembuatan data custom
 router.get("/create", async (req, res) => {
   try {
-    // Jika diperlukan, tambahkan logika untuk mendapatkan data yang diperlukan dari model lain
-    res.render("./custom/create");
+    let rows = await ModelCustom.getAll();
+    res.render("./custom/create", {
+      data: rows,
+    });
   } catch (error) {
     console.error("Error saat memuat halaman pembuatan data custom:", error);
     req.flash("error", "Gagal memuat halaman pembuatan data custom");

@@ -1,114 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Destinasi Wisata</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
+    <style>
+        /* Custom styles */
+        .navbar-brand {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card {
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .btn-custom-package {
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .btn-custom-package:hover {
+            transform: scale(1.1);
+        }
+     /* Style untuk container kegiatan */
+.kegiatan-container {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+/* Style untuk teks kegiatan */
+.kegiatan-text {
+    margin: 0;
+    font-size: 14px; /* Ukuran teks */
+    line-height: 1.5; /* Jarak antar baris */
+}
+
+
+    </style>
+</head>
+<body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container px-4 px-lg-5">
-        <a class="navbar-brand">Madutour</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></ul>
-          <!-- Custom Package Button -->
-          <form class="d-flex">
-            <a class="btn btn-outline-dark me-2" href="/nota">
-              <i class="bi bi-basket-fill me-1"></i>
-              Pesanan
-            </a>
-          </form>
-          <form class="d-flex">
-            <a class="btn btn-outline-dark me-2" href="../custom/create">
-              <i class="bi bi-pencil-square me-1"></i>
-              Custom Paket
-            </a>
-          </form>
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand">Madutour</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4"></ul>
+                <!-- Custom Package Buttons -->
+                <form class="d-flex">
+                    <a class="btn btn-outline-dark me-2 btn-custom-package" href="/nota">
+                        <i class="bi bi-basket-fill me-1"></i>
+                        Pesanan
+                    </a>
+                </form>
+                <form class="d-flex">
+                    <a class="btn btn-outline-dark me-2 btn-custom-package" href="../custom/create">
+                        <i class="bi bi-pencil-square me-1"></i>
+                        Custom Paket
+                    </a>
+                </form>
+            </div>
         </div>
-      </div>
     </nav>
     <!-- Product section-->
 
     <!-- Related items section-->
-    <!-- Related items section-->
     <section class="py-5 bg-light">
       <div class="container px-4 px-lg-5 mt-5">
-        <div
-          class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
-        >
-          <% for(var i = 0; i < data_wisata.length; i++){ %>
-          <div class="col mb-5">
-            <div class="card h-100">
-              <!-- Product image-->
-              <img
-                class="card-img-top"
-                src="/images/upload/<%= data_wisata[i].gambar_paket %>"
-                alt=""
-                height="360"
-              />
-              <!-- Product details-->
-              <div class="card-body p-4">
-                <div class="text-center">
-                  <!-- Product name-->
-                  <h5 class="fw-bolder"><%= data_wisata[i].nama_paket %></h5>
-                </div>
+          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+              <% for(var i = 0; i < data_wisata.length; i++){ %>
+              <div class="col mb-5">
+                  <div class="card h-100">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="/images/upload/<%= data_wisata[i].gambar_paket %>" alt="" height="360" />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+                              <!-- Product name-->
+                              <h5 class="fw-bolder"><%= data_wisata[i].nama_paket %></h5>
+                              <!-- Kegiatan -->
+                              <div class="kegiatan-container" style="white-space: pre-wrap; word-wrap: break-word;">
+                                <p class="kegiatan-text"><%= data_wisata[i].kegiatan %></p>
+                                <p class="kegiatan-text"><%= data_wisata[i].kegiatan %></p>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Product actions-->
+                      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                          <div class="text-center">
+                              <!-- Link to detail page -->
+                              <a href="/users/detailpaket/<%= data_wisata[i].id_paket %>" class="btn btn-secondary">Lihat Paket</a>
+                          </div>
+                      </div>
+                  </div>
               </div>
-              <!-- Product actions-->
-              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center">
-                  <!-- Link to detail page -->
-                  <a
-                    href="/users/detailpaket/<%= data_wisata[i].id_paket %>"
-                    class="btn btn-secondary"
-                  >
-                    Lihat Paket
-                  </a>
-                </div>
-              </div>
-            </div>
+              <% } %>
           </div>
-          <% } %>
-        </div>
       </div>
-    </section>
+  </section>
+  
 
     <!-- Footer-->
     <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">
-          Copyright &copy; Your Website 2023
-        </p>
-      </div>
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+        </div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
-  </body>
+    <!-- Smooth Scroll -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+    <!-- Custom JavaScript -->
+    <script>
+        // Navbar collapse on link click (for mobile)
+        document.querySelectorAll('.navbar-nav a').forEach(navLink => {
+            navLink.addEventListener('click', () => {
+                document.querySelector('.navbar-toggler').click();
+            });
+        });
+
+        // Animate custom package buttons
+        document.querySelectorAll('.btn-custom-package').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.add('btn-custom-package-active');
+                setTimeout(() => {
+                    btn.classList.remove('btn-custom-package-active');
+                }, 200);
+            });
+        });
+    </script>
+</body>
 </html>
