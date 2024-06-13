@@ -41,6 +41,7 @@ router.get("/create", async function (req, res, next) {
       deskripsi: "",
       harga: "",
       kegiatan: "",
+      fasilitas: "",
       kapasitas: "",
       data_wisata: data_wisata,
       data_kategori: data_kategori,
@@ -65,6 +66,7 @@ router.post(
         deskripsi,
         harga,
         kegiatan,
+        fasilitas,
         kapasitas,
       } = req.body;
       let data = {
@@ -74,6 +76,7 @@ router.post(
         deskripsi,
         harga,
         kegiatan,
+        fasilitas,
         kapasitas,
         gambar_paket: req.file.filename,
       };
@@ -143,6 +146,7 @@ router.post(
         deskripsi,
         harga,
         kegiatan,
+        fasilitas,
         kapasitas,
       } = req.body;
       let gambar_paket = filebaru || namaFileLama;
@@ -154,6 +158,7 @@ router.post(
         deskripsi,
         harga,
         kegiatan,
+        fasilitas,
         kapasitas,
         gambar_paket,
       };

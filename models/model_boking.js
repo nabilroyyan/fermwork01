@@ -65,6 +65,21 @@ class model_boking {
       );
     });
   }
+  static async getbyharga(harga) {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "SELECT * FROM boking join paket on boking.id_paket = paket.id_paket where paket.harga = boking.total_harga",
+        id, 
+        (err, rows) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(rows[0]); // Ambil data pertama karena id_boking adalah primary key
+          }
+        }
+      );
+    });
+  }
 
   static async create(data) {
     return new Promise((resolve, reject) => {

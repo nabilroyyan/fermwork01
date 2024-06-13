@@ -56,12 +56,13 @@ router.get("/create", async function (req, res, next) {
 // Route untuk menyimpan boking baru
 router.post("/store", upload.single("bukti"), async function (req, res, next) {
   try {
-    let { id_paket, tanggal, status, id_akun, id_menu } = req.body;
+    let { id_paket, tanggal, status,total_harga, id_akun, id_menu } = req.body;
     let getbokingbyid = await model_boking.getbokingbyid(id_akun);
     let data = {
       id_paket,
       tanggal,
       status,
+      total_harga,
       bukti: req.file.filename,
       id_akun: id_akun,
       id_menu,
@@ -108,13 +109,14 @@ router.get("/edit/:id", async function (req, res, next) {
 router.post("/update/:id", async function (req, res, next) {
   try {
     let id = req.params.id;
-    let { id_paket, id_akun, tanggal, bukti, status } = req.body;
+    let { id_paket, id_akun, tanggal, bukti, status,total_harga, } = req.body;
     let data = {
       id_paket,
       id_akun,
       tanggal,
       bukti,
       status,
+      total_harga,
     };
     await model_boking.update(id, data);
     req.flash("success", "Berhasil update data menu");
