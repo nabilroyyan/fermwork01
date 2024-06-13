@@ -31,14 +31,20 @@ router.get("/create", async (req, res) => {
 // Route untuk menyimpan data custom baru
 router.post("/store", async (req, res) => {
   try {
-    let { deskripsi, status_request } = req.body;
+    let { deskripsi, status_request,wisata_tujuan, makanan, minuman, kegiatan, jumlah_peserta } = req.body;
     let data = {
       deskripsi,
       status_request,
+      wisata_tujuan, 
+      makanan, 
+      minuman, 
+      kegiatan, 
+      jumlah_peserta
+
     };
     await ModelCustom.create(data);
     req.flash("success", "Berhasil menyimpan data");
-    res.redirect("/custom");
+    res.redirect("/users");
   } catch (error) {
     console.error("Error saat menyimpan data:", error);
     req.flash("error", "Gagal menyimpan data");

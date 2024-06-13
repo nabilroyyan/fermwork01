@@ -31,6 +31,22 @@ class model_boking {
     });
   }
 
+  static async getbyIdAkun(id_akun) {
+    return new Promise((resolve, reject) => {
+      const query = `
+        SELECT * FROM boking join paket on boking.id_paket = paket.id_paket 
+        JOIN akun ON boking.id_akun = akun.id_akun WHERE boking.id_akun = ? 
+      `;
+      connection.query(query, [id_akun], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
+
 
   static async getById(id) {
     return new Promise((resolve, reject) => {
