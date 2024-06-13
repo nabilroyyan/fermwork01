@@ -138,35 +138,30 @@
       <div
         class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
       >
+      <% for(var i = 0; i < data_wisata.length; i++){ %>
         <div class="col mb-5">
-          <% for(var i = 0; i < data_wisata.length; i++){ %>
-          <div class="card h-100">
-            <!-- Product image-->
-            <a href="#" data-toggle="modal" data-target="#imageModal1">
-              <img class="card-img-top" src="/images/upload/<%= data_wisata[i].gambar_paket %>" alt="..." />
-            </a>
-            <!-- Product details-->
-            <div class="card-body p-4">
-              <div class="text-center">
-                <!-- Product name-->
-                <h5 class="fw-bolder">
-                  <%= data_wisata[i].nama_paket %>
-                </h5>
-                <!-- Product price-->
-              </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-              <h6>
-                Gili labak sebuah pantai diseberang sumenep, perjalanan
-                ditempuh dg naik kapal skitar 1 sampai 2 jam, disana bisa
-                lihat ikan nemo dan snorkling, selain itu bs mnikmati es
-                kelapa muda dan ikan bakar
+            <div class="card h-100">
+              <!-- Product image-->
+              <a href="#" data-toggle="modal"  data-target="#imageModal1">
+                <img class="card-img-top"  style="height: 40; width: 30;"  src="/images/upload/<%= data_wisata[i].gambar_paket %>" alt="..." />
+              </a>
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="fw-bolder">
+                    Paket Tour Gili Labak Hemat Dan Murah
+                    <%= data_wisata[i].nama_paket %>
+                    </h5>
+                    <!-- Product price-->
+                    </div>
+                    <h6 class="text-center py-4">
+                  <%= data_wisata[i].deskripsi %>
               </h6>
             </div>
           </div>
-          <% } %>
-        </div>
+          </div>
+        <% } %>
       </div>
     </div>
   </section>
@@ -180,48 +175,10 @@
     </div>
   </footer>
 
-  <!-- Modals -->
-  <!-- Modal 1 -->
-  <div class="modal fade" id="imageModal1" tabindex="-1" aria-labelledby="imageModal1Label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img src="images/1.jpg" alt="..." class="img-fluid">
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Modal 2 -->
-  <div class="modal fade" id="imageModal2" tabindex="-1" aria-labelledby="imageModal2Label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img src="images/giliiyang.jpg" alt="..." class="img-fluid">
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Modal 3 -->
-  <div class="modal fade" id="imageModal3" tabindex="-1" aria-labelledby="imageModal3Label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-          <img src="images/15.jpg" alt="..." class="img-fluid">
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
 
   <!-- Bootstrap core JS and dependencies -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -49,7 +49,7 @@ router.get("/", isAuthenticated, async function (req, res, next) {
 router.get("/detailpaket/:id", isAuthenticated, async function (req, res, next) {
   try {
     let id = req.params.id;
-    let rows = await model_paket.getAll();
+    let rows = await model_paket.getById(id);
     let rows2 = await model_wisata.getAll();
     // Ambil data paket berdasarkan ID
     let paket = await model_paket.getById(id);

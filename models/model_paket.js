@@ -21,10 +21,10 @@ class ModelPaket {
   static getById(id) {
     return new Promise((resolve, reject) => {
       const query = `
-        SELECT p.*, w.nama AS nama_wisata
-        FROM paket p
-        LEFT JOIN wisata w ON p.id_wisata = w.id_wisata
-        WHERE p.id_paket = ?
+        SELECT * FROM paket 
+        JOIN wisata ON paket.id_wisata = wisata.id_wisata
+        JOIN menu ON wisata.id_menu = menu.id_menu
+        WHERE paket.id_paket = ?
       `;
       connection.query(query, [id], (err, rows) => {
         if (err) {
