@@ -1,13 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const ModelCustom = require("../models/model_custom");
+const model_menu = require("../models/model_menu");
+const model_wisata = require("../models/model_wisata");
+const model_fasilitas = require("../models/model_fasilitas");
+const model_fasilitas_custom = require("../models/model_fasilitasCostum");
 
 // Route untuk menampilkan semua data custom
 router.get("/", async (req, res) => {
   try {
     let rows = await ModelCustom.getAll();
+    let menu = await model_fasilitas.getAll();
+    let wisata = await model_wisata.getAll();
+    let fasilitas = await model_fasilitas.getAll();
     res.render("./custom", {
       data: rows,
+      menu: menu,
+      wisata: wisata,
+      fasilitas: fasilitas,    
     });
   } catch (error) {
     console.error("Error:", error);
@@ -20,8 +30,14 @@ router.get("/", async (req, res) => {
 router.get("/create", async (req, res) => {
   try {
     let rows = await ModelCustom.getAll();
+    let menu = await model_menu.getAll();
+    let wisata = await model_wisata.getAll();
+    let fasilitas = await model_fasilitas_custom.getAll();
     res.render("./custom/create", {
       data: rows,
+      menu: menu,
+      wisata: wisata,
+      fasilitas: fasilitas, 
     });
   } catch (error) {
     console.error("Error saat memuat halaman pembuatan data custom:", error);
@@ -33,16 +49,14 @@ router.get("/create", async (req, res) => {
 // Route untuk menyimpan data custom baru
 router.post("/store", async (req, res) => {
   try {
-    let { deskripsi, status_request,wisata_tujuan, makanan, minuman, kegiatan, jumlah_peserta } = req.body;
+    let { status_request, kegiatan, jumlah_peserta, id_menu, id_wisata, id_fasilitascostum  } = req.body;
     let data = {
-      deskripsi,
       status_request,
-      wisata_tujuan, 
-      makanan, 
-      minuman, 
       kegiatan, 
-      jumlah_peserta
-
+      jumlah_peserta, 
+      id_menu, 
+      id_wisata, 
+      id_fasilitascostum
     };
     await ModelCustom.create(data);
     req.flash("success", "Berhasil menyimpan data");

@@ -18,6 +18,8 @@ var bokingRouter = require("./routes/boking");
 var perizinanRouter = require("./routes/perizinan");
 var customRouter = require("./routes/custom");
 var notaRouter = require("./routes/nota");
+var fasilitasRouter = require("./routes/fasilitas");
+var fasilitascostumRouter = require("./routes/");
 
  
 const { strict } = require("assert");
@@ -63,6 +65,8 @@ app.use("/boking", bokingRouter);
 app.use("/perizinan", perizinanRouter);
 app.use("/custom", customRouter);
 app.use("/nota", notaRouter);
+app.use("/fasilitas", fasilitasRouter);
+app.use("/fasilitascostum", fasilitascostumRouter);
 
 
 

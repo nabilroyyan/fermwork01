@@ -1,9 +1,9 @@
 const connection = require("../config/database");
 
-class Modelfasilitas {
+class ModelfasilitasCustom {
   static async getAll() {
     return new Promise((resolve, reject) => {
-      connection.query("SELECT * FROM fasilitas join paket on fasilitas.id_paket = paket.id_paket", (err, rows) => {
+      connection.query("SELECT * FROM fasilitas_costum", (err, rows) => {
         if (err) {
           reject(err);
         } else {
@@ -13,39 +13,11 @@ class Modelfasilitas {
     });
   }
 
-  static async getById(id) {
-    return new Promise((resolve, reject) => {
-      connection.query(
-        "SELECT * FROM fasilitas JOIN paket ON fasilitas.id_paket = paket.id_paket WHERE fasilitas.id_paket = ?",
-        connection.query(query, [id], (err, rows) => {
-        if (err) {
-          reject(new Error("Failed to fetch package by ID"));
-        } else {
-          resolve(rows.length > 0 ? rows[0] : null);
-        }
-        }
-      ));
-    });
-  }
-  static async getbypaketid(id) {
-    return new Promise((resolve, reject) => {
-      connection.query(
-        "SELECT * FROM fasilitas WHERE id_paket = ?",
-        id,
-        (err, rows) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(rows); // Ambil data pertama karena id_fasilitas adalah primary key
-          }
-        }
-      );
-    });
-  }
+
 
   static async create(data) {
     return new Promise((resolve, reject) => {
-      connection.query("INSERT INTO fasilitas SET ?", data, (err, result) => {
+      connection.query("INSERT INTO fasilitas_costum SET ?", data, (err, result) => {
         if (err) {
           reject(err);
         } else {
@@ -58,7 +30,7 @@ class Modelfasilitas {
   static async update(id, data) {
     return new Promise((resolve, reject) => {
       connection.query(
-        "UPDATE fasilitas SET ? WHERE id_fasilitas = ?",
+        "UPDATE fasilitas_costum SET ? WHERE id_fasilitascostum = ?",
         [data, id],
         (err, result) => {
           if (err) {
@@ -74,7 +46,7 @@ class Modelfasilitas {
   static async remove(id) {
     return new Promise((resolve, reject) => {
       connection.query(
-        "DELETE FROM fasilitas WHERE id_fasilitas = ?",
+        "DELETE FROM fasilitas_costum WHERE id_fasilitascostum = ?",
         id,
         (err, result) => {
           if (err) {
@@ -88,4 +60,4 @@ class Modelfasilitas {
   }
 }
 
-module.exports = Modelfasilitas;
+module.exports = ModelfasilitasCustom;

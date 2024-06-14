@@ -3,7 +3,7 @@ const connection = require('../config/database');
 class ModelCustom {
   static async getAll() {
     return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM custom', (err, rows) => {
+      connection.query('SELECT * FROM custom join wisata on custom.id_wisata = wisata.id_wisata join menu on custom.id_menu = menu.id_menu join fasilitas_costum on custom.id_fasilitascostum  = fasilitas_costum.id_fasilitascostum ', (err, rows) => {
         if (err) {
           reject(err);
         } else {

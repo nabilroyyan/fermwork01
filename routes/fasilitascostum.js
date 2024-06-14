@@ -20,7 +20,6 @@ router.get('/', async function(req, res, next) {
 router.get('/create', async function(req, res, next) {
     try {
         let data_fasilitas = await model_fasilitas.getAll();
-        let data_paket = await ModelPaket.getAll();
         res.render('./fasilitas/create', {
             data_fasilitas: data_fasilitas,
             data_paket: data_paket,

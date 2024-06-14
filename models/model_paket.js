@@ -34,6 +34,23 @@ class ModelPaket {
     });
   }
 
+  static async getByIdPaket(id) {
+    return new Promise((resolve, reject) => {
+      const query = `
+        SELECT * FROM paket 
+        JOIN wisata ON paket.id_wisata = wisata.id_wisata
+        WHERE paket.id_paket = ?
+      `;
+      connection.query(query, [id], (err, rows) => {
+        if (err) {
+          reject(new Error("Failed to fetch package by ID"));
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  }
+
   static getByKategoriId(id) {
     return new Promise((resolve, reject) => {
       const query = `

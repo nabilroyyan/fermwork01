@@ -4,6 +4,7 @@ const model_paket = require("../models/model_paket"); // Tambahkan model_paket
 const model_wisata = require("../models/model_wisata");
 const model_menu = require("../models/model_menu");
 const model_kategori = require("../models/model_kategori");
+const model_fasilitas = require("../models/model_fasilitas");
 var router = express.Router();
 
 // Middleware to check if user is authenticated
@@ -82,18 +83,27 @@ router.get(
     try {
       let id = req.params.id;
       let rows = await model_paket.getById(id);
+      let rows1 = await model_paket.getById(id);
       let rows2 = await model_wisata.getAll();
+      let rows3 = await model_fasilitas.getbypaketid(id);
+      console.log(rows3)
+      
       // Ambil data paket berdasarkan ID
       let paket = await model_paket.getById(id);
+      let fasilitas = await model_fasilitas.getAll();
+      
       // Jika paket tidak ditemukan, kembalikan respon 404
-      if (!paket) {
+      if (!paket && fasilitas) {
         return res.status(404).json({ error: "Paket tidak ditemukan" });
       }
       // Render halaman detail paket dengan data paket
       res.render("users/detailpaket", {
         paket,
+        fasilitas,
         data_wisata: rows,
         data_menu: rows2,
+        data_fasilitas: rows1,
+        data_fasilitas2: rows3,
         id,
       });
     } catch (error) {

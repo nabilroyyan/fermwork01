@@ -89,6 +89,7 @@
                       <div class="card-body p-4">
                           <div class="text-center">
                               <!-- Product name-->
+                              <h5 class="fw-bolder"><%= data_wisata[i].nama %></h5>
                               <h5 class="fw-bolder"><%= data_wisata[i].nama_paket %></h5>
                               <!-- Kegiatan -->
                               <div class="kegiatan-container" style="white-space: pre-wrap; word-wrap: break-word;">
@@ -101,7 +102,7 @@
                       <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                           <div class="text-center">
                               <!-- Link to detail page -->
-                              <a href="/users/detailpaket/<%= data_wisata[i].id_paket %>" class="btn btn-secondary">Lihat Paket</a>
+                              <a href="/users/detailpaket/<%= data_wisata[i].id_paket || data_fasilitas[i].id_paket %>" class="btn btn-secondary">Lihat Paket</a>
                           </div>
                       </div>
                   </div>
